@@ -5,6 +5,8 @@ const urlController = require('./controllers/url.controller')
 
 routes.get('/url', urlController.getAll);
 
-routes.post('/url', urlController.create)
+routes.get('/url/:id', urlController.getById);
+
+routes.post('/url', urlController.create);
 
 module.exports = routes;
