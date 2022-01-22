@@ -8,29 +8,40 @@ module.exports = {
 
   async create(req, res) {
     const { url } = req.body;
-    const urlEncurtada = `http://localhost:3000/${gerarCodigo()}`;
-    console.log(url)
-    console.log(urlEncurtada)
+    const hash = gerarCodigo();
 
     const urlSaved = await Url.create({
       url_original: url,
-      url_encurtada: urlEncurtada
+      url_encurtada: hash
     });
 
     res.json(urlSaved);
   },
   
   async getAll(req, res) {
-    const urls = await Url.find();
+    const { date } = req.query;
+    let urls;
+
+    if (date) {
+      urls = await Url.find({ createdAt: date })
+    } else {
+      urls = await Url.find();
+    }
 
     res.json(urls);
   },
 
   async getById(req, res) {
     const { id } = req.params;
-    const url = await Url.findById(id);
+    const result = await Url.findById(id);
 
-    res.json(url);
-  }
+    res.json(result);
+  },
 
+  async getByShortUrl(req, res) {
+    const { shorUrl } = req.params;
+    const result = await Url.find({ url_encurtada: shorUrl });
+
+    res.json(result);
+  },
 }

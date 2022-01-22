@@ -7,6 +7,8 @@ routes.get('/url', urlController.getAll);
 
 routes.get('/url/:id', urlController.getById);
 
+routes.get('/:shorUrl', urlController.getByShortUrl);
+
 routes.post('/url', urlController.create);
 
 module.exports = routes;
