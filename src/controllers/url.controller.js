@@ -2,17 +2,17 @@ const mongoose = require('mongoose');
 const UrlSchema = require('../models/url.schema');
 const Url = mongoose.model('Url', UrlSchema);
 
-const { gerarCodigo } = require('../services/gerar-codigo');
+const { hashGenerate } = require('../services/hash-generate.service');
 
 module.exports = {
 
   async create(req, res) {
     const { url } = req.body;
-    const hash = gerarCodigo();
+    const hash = hashGenerate();
 
     const urlSaved = await Url.create({
-      url_original: url,
-      url_encurtada: hash
+      url_adress: url,
+      url_short: hash
     });
 
     res.json(urlSaved);
@@ -23,7 +23,7 @@ module.exports = {
     let urls;
 
     if (date) {
-      urls = await Url.find({ createdAt: date })
+      urls = await Url.find({ created_at: date })
     } else {
       urls = await Url.find();
     }
@@ -39,8 +39,8 @@ module.exports = {
   },
 
   async getByShortUrl(req, res) {
-    const { shorUrl } = req.params;
-    const result = await Url.find({ url_encurtada: shorUrl });
+    const { shortUrl } = req.params;
+    const result = await Url.find({ url_short: shortUrl });
 
     res.json(result);
   },

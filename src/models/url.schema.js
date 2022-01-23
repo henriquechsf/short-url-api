@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 
 const UrlSchema = new mongoose.Schema({
-  url_original: {
+  url_adress: {
     type: String,
     required: true
   },
-  url_encurtada: {
+  url_short: {
     type: String,
     required: true
   },
-  createdAt: {
+  created_at: {
     type: Date,
     default: Date.now,
   },

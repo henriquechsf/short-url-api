@@ -1,5 +1,5 @@
 module.exports = {
-  gerarCodigo() {
+  hashGenerate() {
     let text = '';
     const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     
