@@ -24,8 +24,9 @@ app.get('/', (req, res) => {
 })
 
 const routes = require('./src/routes');
+const config = require('./src/config/config');
 app.use(routes);
 
-app.listen(3000, function() {
-  console.log('Servidor rodando na porta 3000');
+app.listen(config.PORT, () => {
+  console.log('Server running...');
 })
