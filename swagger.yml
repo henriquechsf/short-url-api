@@ -46,9 +46,17 @@ paths:
       tags:
         - urls
       summary: Retorna todas URLs cadastradas
+      parameters:
+        - in: query
+          name: date
+          description: Filtro pela data do cadastro. Caso não passar este parametro retorna todas URLs.
+          required: false
+          schema:
+            type: string
+            example: 2022-01-23T15:29:26.275Z
       responses:
         "200": # status code
-          description: Retorna todas URLs cadastradas
+          description: Retorna URL pelo Código do Encurtador
           content:
             application/json:
               schema:
@@ -56,18 +64,19 @@ paths:
                 items:
                   type: object
                   properties:
-                  _id:
-                    type: string
-                    example: 61ed3711df924f6034115572
-                  url_address:
-                    type: string
-                    example: https://www.unyleya.com.br
-                  url_short:
-                    type: string
-                    example: J1knc
-                  created_at:
-                    type: string
-                    example: 2022-01-23T11:08:01.777Z
+                    _id:
+                      type: string
+                      example: 61ed3711df924f6034115572
+                    url_address:
+                      type: string
+                      example: https://www.unyleya.com.br
+                    url_short:
+                      type: string
+                      example: J1knc
+                    created_at:
+                      type: string
+                      example: 2022-01-23T11:08:01.777Z
+                  type: object
   /urls/{id}:
     get:
       tags:
