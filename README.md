@@ -27,8 +27,6 @@ API Encurtador de URL. Atividade desenvolvida na unidade 03 do módulo Desenvolv
 
 ## :rocket: Tecnologias
 
-The following tools were used in this project:
-
 - [Node.js](https://nodejs.org/en/)
 - [MongoDB](https://docs.mongodb.com/)
 - [Swagger](https://swagger.io/docs/)
