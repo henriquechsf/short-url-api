@@ -3,12 +3,12 @@ const routes = express.Router();
 
 const urlController = require('./controllers/url.controller')
 
-routes.get('/url', urlController.getAll);
+routes.get('/urls', urlController.getAll);
 
-routes.get('/url/:id', urlController.getById);
+routes.get('/urls/:id', urlController.getById);
 
-routes.get('/:shorUrl', urlController.getByShortUrl);
+routes.post('/urls', urlController.create);
 
-routes.post('/url', urlController.create);
+routes.get('/:shortUrl', urlController.getByShortUrl);
 
 module.exports = routes;

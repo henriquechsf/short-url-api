@@ -1,0 +1,154 @@
+openapi: 3.0.0
+info:
+  title: API Encurtador de URLs
+  description: Atividade 03 - MBA Desenvolvimento Mobile Unyleya
+  version: 1.0.0
+servers:
+  - url: https://short-url-mobile.herokuapp.com/
+    description: Deploy do Projeto no Heroku
+paths:
+  /urls:
+    post:
+      tags:
+        - urls
+      summary: Adiciona uma nova url encurtada
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                  example: http://www.google.com.br
+      responses:
+        "200": # status code
+          description: Retorna URL pelo Código do Encurtador
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    example: 61ed3711df924f6034115572
+                  url_address:
+                    type: string
+                    example: https://www.unyleya.com.br
+                  url_short:
+                    type: string
+                    example: J1knc
+                  created_at:
+                    type: string
+                    example: 2022-01-23T11:08:01.777Z
+    get:
+      tags:
+        - urls
+      summary: Retorna todas URLs cadastradas
+      responses:
+        "200": # status code
+          description: Retorna todas URLs cadastradas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                  _id:
+                    type: string
+                    example: 61ed3711df924f6034115572
+                  url_address:
+                    type: string
+                    example: https://www.unyleya.com.br
+                  url_short:
+                    type: string
+                    example: J1knc
+                  created_at:
+                    type: string
+                    example: 2022-01-23T11:08:01.777Z
+  /urls/{id}:
+    get:
+      tags:
+        - urls
+      summary: Retorna URL pelo ID
+      parameters:
+        - in: path
+          name: id
+          description: ID da URL cadastrada
+          required: true
+          schema:
+            type: string
+      responses:
+        "200": # status code
+          description: Retorna URL pelo ID
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    example: 61ed3711df924f6034115572
+                  url_address:
+                    type: string
+                    example: https://www.unyleya.com.br
+                  url_short:
+                    type: string
+                    example: J1knc
+                  created_at:
+                    type: string
+                    example: 2022-01-23T11:08:01.777Z
+        "404": # status code
+          description: URL não encontrada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: URL não encontrada
+  /{shortUrl}:
+    get:
+      tags:
+        - short url
+      summary: Retorna URL pelo Código do Encurtador
+      parameters:
+        - in: path
+          name: shortUrl
+          description: Código do encurtador da URL
+          required: true
+          schema:
+            type: string
+      responses:
+        "200": # status code
+          description: Retorna URL pelo Código do Encurtador
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    example: 61ed3711df924f6034115572
+                  url_address:
+                    type: string
+                    example: https://www.unyleya.com.br
+                  url_short:
+                    type: string
+                    example: J1knc
+                  created_at:
+                    type: string
+                    example: 2022-01-23T11:08:01.777Z
+        "404": # status code
+          description: URL não encontrada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: URL não encontrada
