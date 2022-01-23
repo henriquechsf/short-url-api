@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const cors = require('cors');
+require('dotenv').config();
 
 const swaggerUI = require('swagger-ui-express');
 const yaml = require('yamljs');
@@ -12,7 +13,7 @@ app.use('/docs', swaggerUI.serve, swaggerUI.setup(spec));
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect("mongodb+srv://mongo:mongopass@cluster0.es145.mongodb.net/encurtador_url?retryWrites=true&w=majority")
+mongoose.connect(process.env.MONGODB_CREDENTIALS);
 
 app.get('/', (req, res) => {
   res.json({
